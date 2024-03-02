@@ -8,6 +8,8 @@ public class AdvApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AdvApplication.class, args);
+		String currentDirectory = System.getProperty("user.dir");
+        System.out.println("Current working directory: " + currentDirectory);
 	}
 
 }

@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/admin.css"> <!-- Include your CSS file -->
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.description}"></td> 
+            <td th:text="${product.price}"></td>
+            <td>
+                <img th:src="@{${product.getPhotosImagePath()}}" style="width: 200px; height: auto;" /> 
+            </td>
+            <td>
+                <a th:href="@{./products/edit/{id}(id=${product.id})}">Edit</a>
+            </td>
+            
+            <td>
+                <a th:href="@{./products/delete/{id}(id=${product.id})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
