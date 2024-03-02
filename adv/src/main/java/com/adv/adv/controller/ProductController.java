@@ -2,11 +2,9 @@ package com.adv.adv.controller;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.adv.adv.model.Product;
@@ -14,14 +12,10 @@ import com.adv.adv.repository.CategoryRepository;
 import com.adv.adv.repository.MetalRepository;
 import com.adv.adv.repository.ProductRepository;
 
-import io.micrometer.common.util.StringUtils;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
-
 import java.io.IOException;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @RestController
