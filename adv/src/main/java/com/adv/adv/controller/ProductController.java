@@ -5,18 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.adv.adv.model.Product;
 import com.adv.adv.repository.CategoryRepository;
 import com.adv.adv.repository.MetalRepository;
 import com.adv.adv.repository.ProductRepository;
-
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import java.io.IOException;
-
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/products")
@@ -49,15 +47,25 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-public RedirectView saveProduct(@ModelAttribute("product") Product product,
-                                @RequestParam("image") MultipartFile multipartFile) throws IOException {
-    String fileName = FilenameUtils.getName(multipartFile.getOriginalFilename());
-    product.setPhotos(fileName);
-    Product savedProduct = this.productRepository.save(product);
-    String uploadDir = "uploads/" + savedProduct.getId();
-    FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-    return new RedirectView("/products");
-}
+    public ModelAndView saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result,
+                                    @RequestParam("image") MultipartFile multipartFile) throws IOException {
+        if (result.hasErrors()) {
+            ModelAndView mav = new ModelAndView("create-product.html");
+            mav.addObject("metals", metalRepository.findAll());
+            mav.addObject("categories", categoryRepository.findAll());
+            mav.addObject("bindingResult", result);
+            return mav; // Return ModelAndView directly
+        }
+    
+        String fileName = FilenameUtils.getName(multipartFile.getOriginalFilename());
+        product.setPhotos(fileName);
+        Product savedProduct = this.productRepository.save(product);
+        String uploadDir = "uploads/" + savedProduct.getId();
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        return new ModelAndView("redirect:/products");
+    }
+    
+
 
     
 @GetMapping("/edit/{Id}")
