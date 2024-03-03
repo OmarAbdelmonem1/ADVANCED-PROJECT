@@ -76,7 +76,29 @@
         <artifactId>commons-fileupload</artifactId>
         <version>1.4</version>
     </dependency>
+	<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-web</artifactId>
+  <exclusions>
+    <exclusion>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-logging</artifactId>
+    </exclusion>
+  </exclusions>
+  
+	 <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.22</version>
+        <scope>provided</scope>
+    </dependency>
+
+</dependency>
+
+
 </dependencies>
+
+
 
 	<build>
 		<plugins>

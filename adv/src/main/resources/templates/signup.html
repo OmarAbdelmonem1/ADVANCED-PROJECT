@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create New User Account</title>
+    <!-- Add your CSS and other head elements here -->
+</head>
+<body>
+
+<div class="login-area ptb-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                <div class="login-title">
+                    <h3>Create New User Account</h3>
+                </div>
+                <div class="login-form">
+                    <form th:action="@{/user/signup}" method="post" th:object="${user}">
+                        <div class="form-group login-page">
+                            <label for="exampleInputName1">First Name <span>*</span></label>
+                            <input type="text" class="form-control" id="exampleInputName1" th:name="firstName">
+                        </div>
+                        <div class="form-group login-page">
+                            <label for="exampleInputName2">Last Name <span>*</span></label>
+                            <input type="text" class="form-control" id="exampleInputName2" th:name="lastName">
+                        </div>
+                        <div class="form-group login-page">
+                            <label for="exampleInputEmail1">Email <span>*</span></label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" th:name="email">
+                        </div>
+                        <div class="form-group login-page">
+                            <label for="exampleInputPassword1">Password <span>*</span></label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" th:name="password">
+                        </div>
+                        <div class="form-group login-page">
+                            <label for="exampleInputPassword2">Confirm Password <span>*</span></label>
+                            <input type="password" class="form-control" id="exampleInputPassword2" th:name="confirmPassword">
+                        </div>
+                        <button type="submit" class="btn btn-default login-btn">Create an Account</button>
+                    </form>
+                </div>
+                <a href="#" class="back">back</a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
+                <div class="login-title">
+                    <h3>Sign in with Social Media Account</h3>
+                </div>
+
+                <!-- Add your social media login buttons here -->
+                <a class="btn btn-block btn-social btn-facebook">
+                    <span class="fa fa-facebook"></span> Sign in with Facebook
+                </a>
+
+                <a class="btn btn-block btn-social btn-google">
+                    <span class="fa fa-google"></span> Sign in with Google
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add your scripts and other body elements here -->
+
+</body>
+</html>
