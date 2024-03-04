@@ -76,9 +76,11 @@
         <artifactId>commons-fileupload</artifactId>
         <version>1.4</version>
     </dependency>
+
 	<dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-web</artifactId>
+
   <exclusions>
     <exclusion>
       <groupId>org.springframework.boot</groupId>
@@ -93,6 +95,14 @@
         <scope>provided</scope>
     </dependency>
 
+    
+
+</dependency>
+
+    <dependency>
+<groupId>org.mindrot</groupId>
+<artifactId>jbcrypt</artifactId>
+<version>0.4</version>
 </dependency>
 
 

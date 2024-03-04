@@ -3,16 +3,14 @@ package com.adv.adv.controller;
 import com.adv.adv.model.User;
 import com.adv.adv.repository.userRepository;
 
-import jakarta.validation.Valid;
-
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
+
 import java.util.Optional;
 
 @RestController
@@ -30,22 +28,20 @@ public class UserController {
         return mav;
     }
  @PostMapping("/signup")
-public ModelAndView saveFruit(@Valid @ModelAttribute User user, BindingResult result) {
+public ModelAndView saveFruit( @ModelAttribute User user) {
    
+  String hashedPassword=BCrypt.hashpw(user.getPassword(),BCrypt.gensalt(12));
+  user.setPassword(hashedPassword);
+    this.userRepository.save(user);
+
     ModelAndView mav = new ModelAndView("redirect:login");
     mav.addObject("user", user); // Optionally, you can pass the user object to the success page
     return mav;
 
 }
 
-
-
-
-
     @GetMapping("/login")
     public ModelAndView getLoginPage() {
-
-        
         User newuser= new User();
         ModelAndView mav = new ModelAndView ("login.html");
         mav.addObject(newuser);
