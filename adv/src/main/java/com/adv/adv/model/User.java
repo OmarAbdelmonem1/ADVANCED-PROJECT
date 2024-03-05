@@ -3,17 +3,13 @@ package com.adv.adv.model;
 import jakarta.persistence.*;
 
 @Entity
-// @Table (name = "users", uniqueConstraints = {
-//     @UniqueConstraint(columnNames = {"username"}),
-//     @UniqueConstraint(columnNames = {"email"})
-//     })
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-  
+
     private String username;
-    private String email; 
+    private String email;
     private String password;
 
 
